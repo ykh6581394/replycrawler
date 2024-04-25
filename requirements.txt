@@ -1,4 +1,3 @@
-os
 pandas
 google-api-python-client
 warnings
