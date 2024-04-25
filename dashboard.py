@@ -6,7 +6,6 @@ Created on Thu Apr 25 15:04:22 2024
 """
 
 import streamlit as st
-import os
 import io
 import zipfile
 import pandas as pd
@@ -14,7 +13,7 @@ from googleapiclient.discovery import build
 import warnings
 warnings.filterwarnings('ignore')
 from selenium import webdriver
-from  selenium.webdriver.common.by  import  By
+from  selenium.webdriver.common.by import By
 import time
 from bs4 import BeautifulSoup
 
@@ -45,8 +44,7 @@ def youtubeReplyCrawler(url, api_key, path):
             break
     col = ['comment', 'author', 'date', 'num_likes']
     df = pd.DataFrame(comments, columns=col)
-    file_name = url_you.split("=")[-1]
-    
+
     return df
     #df.to_csv(directory+'/'+path+'/'+file_name+'.csv', index=None)
     
