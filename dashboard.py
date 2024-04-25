@@ -14,6 +14,7 @@ import warnings
 warnings.filterwarnings('ignore')
 from selenium import webdriver
 from  selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 import time
 from bs4 import BeautifulSoup
 
@@ -49,9 +50,14 @@ def youtubeReplyCrawler(url, api_key, path):
     #df.to_csv(directory+'/'+path+'/'+file_name+'.csv', index=None)
     
 def getNavernewsReply(url, num , path, wait_time=5, delay_time=0.1):
-
+    """
     options = webdriver.ChromeOptions()
     options.add_argument("headless")
+    """
+    options = Options() 
+    options.add_argument("--headless=new")
+    options.add_argument('--disable-gpu')
+
     
     driver = webdriver.Chrome(options=options)
     driver.implicitly_wait(wait_time)
