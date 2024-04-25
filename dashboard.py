@@ -92,11 +92,12 @@ def domainFinder(sel_url_unit):
 tab1, tab2, tab3 = st.tabs(["You tube", "Naver", "URL All"])
 
 with tab1:
-    directory = st.text_input("File Directory You tube")
+    directory = os.getcwd()
+    print(directory)
     url_you = st.text_input("Youtube Link")
     api_you = st.text_input("API Key")
     if st.button("Change Youtube Directory"):
-        os.chdir(directory)
+        #os.chdir(directory)
         if 'youtube' not in os.listdir(directory):
             os.mkdir(directory+"/youtube/")
 
@@ -106,12 +107,13 @@ with tab1:
         st.success('Done!')
 
 with tab2:
-    directory = st.text_input("File Directory Naver")
+    directory = os.getcwd()
+    print(directory)
     url_naver = st.text_input("Naver Reply Link")
     num       = st.text_input("Comment")
     
     if st.button("Change Naver Directory"):
-        os.chdir(directory)
+        #os.chdir(directory)
         if 'naver' not in os.listdir(directory):
             os.mkdir(directory+"/naver/")
         
@@ -121,22 +123,19 @@ with tab2:
         st.success('Done!')
 
 with tab3:
-    directory = st.text_input("File Directory")
+    directory = os.getcwd()
+    print(directory)
     api_yous = st.text_input("You Tube API Key")
     uploaded_files_url =  st.file_uploader("Upload your urls",type=['csv'],accept_multiple_files=False)
     
     if st.button("Change Directory"):
-        os.chdir(directory)
+        #os.chdir(directory)
         if 'all' not in os.listdir(directory):
             os.mkdir(directory+"/all/")
         
     if st.button("Crawl All Reply"):
         urls_all = pd.read_csv(uploaded_files_url)
         
-        files = os.listdir("./all/")
-        if files is not None:
-            for t in range(len(files)):
-                os.remove("./word/"+files[t])
         sel_url = urls_all["urls"]
         progress_text = "Doing some heavy computations..."
         my_bar = st.progress(0.0, text=progress_text)
