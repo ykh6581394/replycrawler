@@ -2,6 +2,5 @@ pandas
 google-auth-httplib2 
 google-auth-oauthlib
 google-api-python-client
-selenium
-time
 beautifulsoup4
+selenium
