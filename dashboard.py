@@ -62,7 +62,7 @@ def getNavernewsReply(url, num , path, wait_time=5, delay_time=0.1):
     driver = webdriver.Chrome(options=options)
     driver.implicitly_wait(wait_time)
     driver.get(url)
-
+    
     while True:
         try:
             more  =  driver.find_element(By.CLASS_NAME,  'u_cbox_btn_more')
