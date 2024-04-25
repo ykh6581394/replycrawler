@@ -18,7 +18,7 @@ from bs4 import BeautifulSoup
 
 st.title("Reply Crawler")
 
-def youtubeReplyCrawler(url, api_key, path):
+def youtubeReplyCrawler(url, api_key, path, directory):
     comments = list()
     api_obj = build('youtube', 'v3', developerKey=api_key)
     
@@ -45,9 +45,9 @@ def youtubeReplyCrawler(url, api_key, path):
     df = pd.DataFrame(comments)
     file_name = url_you.split("=")[-1]
     #return df
-    df.to_excel('./'+path+'/'+file_name+'.xlsx', header=['comment', 'author', 'date', 'num_likes'], index=None)
+    df.to_excel(directory+'/'+path+'/'+file_name+'.xlsx', header=['comment', 'author', 'date', 'num_likes'], index=None)
     
-def getNavernewsReply(url, num , path, wait_time=5, delay_time=0.1):
+def getNavernewsReply(url, num , path, directory, wait_time=5, delay_time=0.1):
 
     options = webdriver.ChromeOptions()
     options.add_argument("headless")
@@ -82,7 +82,7 @@ def getNavernewsReply(url, num , path, wait_time=5, delay_time=0.1):
     col = ['작성자','시간','내용']
 
     df = pd.DataFrame(list_sum, columns=col)
-    df.to_excel('./'+path+'/'+'naver_'+str(num)+'.xlsx', sheet_name='뉴스 기사 제목')
+    df.to_excel(directory+'/'+path+'/'+'naver_'+str(num)+'.xlsx', sheet_name='뉴스 기사 제목')
 
 def domainFinder(sel_url_unit):
     domain = sel_url_unit.split(".")[1]
@@ -93,7 +93,7 @@ tab1, tab2, tab3 = st.tabs(["You tube", "Naver", "URL All"])
 
 with tab1:
     directory = os.getcwd()
-    print(directory)
+    st.write(directory)
     url_you = st.text_input("Youtube Link")
     api_you = st.text_input("API Key")
     if st.button("Change Youtube Directory"):
@@ -108,7 +108,7 @@ with tab1:
 
 with tab2:
     directory = os.getcwd()
-    print(directory)
+    st.write(directory)
     url_naver = st.text_input("Naver Reply Link")
     num       = st.text_input("Comment")
     
@@ -124,7 +124,7 @@ with tab2:
 
 with tab3:
     directory = os.getcwd()
-    print(directory)
+    st.write(directory)
     api_yous = st.text_input("You Tube API Key")
     uploaded_files_url =  st.file_uploader("Upload your urls",type=['csv'],accept_multiple_files=False)
     
