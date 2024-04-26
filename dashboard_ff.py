@@ -59,7 +59,7 @@ def getNavernewsReply(url, num , path, wait_time=5, delay_time=0.1):
     options.add_argument('--disable-gpu')
 
     
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Firefox(options=options)
     driver.implicitly_wait(wait_time)
     driver.get(url)
     
