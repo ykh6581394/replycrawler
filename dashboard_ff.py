@@ -7,6 +7,7 @@ Created on Fri Apr 26 09:10:17 2024
 
 import streamlit as st
 import io
+import os
 import zipfile
 import pandas as pd
 from googleapiclient.discovery import build
@@ -51,10 +52,16 @@ def youtubeReplyCrawler(url, api_key, path):
     
 def getNavernewsReply(url, num , path, wait_time=5, delay_time=0.1):
 
+    @st.experimental_singleton
+    def installff():
+      os.system('sbase install geckodriver')
+      os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver')
+
+    _ = installff()
+
     options = Options() 
     options.add_argument("--headless")
-    options.add_argument('--disable-gpu')
-
+    
     
     driver = webdriver.Firefox(options=options)
     driver.implicitly_wait(wait_time)
