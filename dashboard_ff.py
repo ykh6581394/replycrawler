@@ -18,6 +18,7 @@ from  selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 import time
 from bs4 import BeautifulSoup
+from webdriver_manager.firefox import GeckoDriverManager
 
 st.title("Reply Crawler")
 
@@ -52,18 +53,12 @@ def youtubeReplyCrawler(url, api_key, path):
     
 def getNavernewsReply(url, num , path, wait_time=5, delay_time=0.1):
 
-    @st.experimental_singleton
-    def installff():
-      os.system('sbase install geckodriver')
-      os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver')
-
-    _ = installff()
-
+    service = Service(GeckoDriverManager().install())
     options = Options() 
     options.add_argument("--headless")
     
     
-    driver = webdriver.Firefox(options=options)
+    driver = webdriver.Firefox(options=options, service=service)
     driver.implicitly_wait(wait_time)
     driver.get(url)
     
