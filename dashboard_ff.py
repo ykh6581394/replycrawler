@@ -53,11 +53,15 @@ def youtubeReplyCrawler(url, api_key, path):
     #df.to_csv(directory+'/'+path+'/'+file_name+'.csv', index=None)
     
 def getNavernewsReply(url, num , path, wait_time=5, delay_time=0.1):
+    def installff():
+        os.system('sbase install geckodriver')
+        os.system('ln -s /home/appuser/venv/lib/python3.7/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver')
 
+    _ = installff()
     service = Service(GeckoDriverManager().install())
     options = Options() 
     options.add_argument("--headless")
-    
+    #options.binary_location = 'C:/Program Files/Mozilla Firefox/firefox.exe'
     
     driver = webdriver.Firefox(options=options, service=service)
     driver.implicitly_wait(wait_time)
