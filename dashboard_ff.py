@@ -58,12 +58,13 @@ def getNavernewsReply(url, num , path, wait_time=5, delay_time=0.1):
         os.system('ln -s /home/appuser/venv/lib/python3.7/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver')
 
     _ = installff()
-    service = Service(GeckoDriverManager().install())
+    #service = Service(GeckoDriverManager().install())
     options = Options() 
     options.add_argument("--headless")
     #options.binary_location = 'C:/Program Files/Mozilla Firefox/firefox.exe'
-    
-    driver = webdriver.Firefox(options=options, service=service)
+ 
+    driver = webdriver.Firefox(GeckoDriverManager().install(), options=options)
+    #driver = webdriver.Firefox(options=options, service=service)
     driver.implicitly_wait(wait_time)
     driver.get(url)
     
