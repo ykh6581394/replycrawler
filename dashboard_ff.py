@@ -50,10 +50,7 @@ def youtubeReplyCrawler(url, api_key, path):
     #df.to_csv(directory+'/'+path+'/'+file_name+'.csv', index=None)
     
 def getNavernewsReply(url, num , path, wait_time=5, delay_time=0.1):
-    """
-    options = webdriver.ChromeOptions()
-    options.add_argument("headless")
-    """
+
     options = Options() 
     options.add_argument("--headless")
     options.add_argument('--disable-gpu')
