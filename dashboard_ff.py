@@ -61,12 +61,10 @@ def getNavernewsReply(url, num , path, wait_time=5, delay_time=0.1):
     _ = installff()
     service = Service(GeckoDriverManager().install())
     options = Options() 
-    options.add_argument("--headless")
+    options.add_argument("--headless=new")
     #options.binary_location = 'C:/Program Files/Mozilla Firefox/firefox.exe'
-    cap = DesiredCapabilities().FIREFOX
-    cap["marionette"] = False
-    #driver = webdriver.Firefox(GeckoDriverManager().install(), options=options)
-    driver = webdriver.Firefox(options=options, service=service, capabilities=cap)
+
+    driver = webdriver.Firefox(options=options, service=service)
     driver.implicitly_wait(wait_time)
     driver.get(url)
     
